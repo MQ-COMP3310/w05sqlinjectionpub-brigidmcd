@@ -42,13 +42,13 @@ public class App {
 
         wordleDatabaseConnection.createNewDatabase("words.db");
         if (wordleDatabaseConnection.checkIfConnectionDefined()) {
-            logger.log(Level.INFO, "Wordle created and connected.");
+            logger.log(Level.INFO,"Wordle created and connected.");
         } else {
             System.out.println("Not able to connect. Sorry!");
             return;
         }
         if (wordleDatabaseConnection.createWordleTables()) {
-            logger.log(Level.INFO, "Wordle structures in place.");
+            logger.log(Level.INFO,"Wordle structures in place.");
         } else {
             System.out.println("Not able to launch. Sorry!");
             return;
