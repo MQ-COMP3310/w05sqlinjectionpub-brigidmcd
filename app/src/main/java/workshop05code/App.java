@@ -34,6 +34,10 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        //logging that the program runs
+        
+
         SQLiteConnectionManager wordleDatabaseConnection = new SQLiteConnectionManager("words.db");
 
         wordleDatabaseConnection.createNewDatabase("words.db");
@@ -72,24 +76,31 @@ public class App {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter a 4 letter word for a guess or q to quit: ");
             String guess = scanner.nextLine();
+            logger.log(Level.INFO,"The 'Word Guess Program' program runs");
 
             while (!guess.equals("q")) {
                 System.out.println("You've guessed '" + guess+"'.");
                  
                 if (!guess.matches("[a-z]+") || !(guess.length()== 4)) {
                     System.out.println("Your input is invalid. Please try again.\n");
+                    logger.log(Level.INFO,"The user provided invalid input");
                 } else {
 
                 if (wordleDatabaseConnection.isValidWord(guess)) { 
                     System.out.println("Success! It is in the the list.\n");
+                    logger.log(Level.INFO,"The user provided valid input and a word was found");
                 }else{
                     System.out.println("Sorry. This word is NOT in the the list.\n");
+                    logger.log(Level.INFO,"The user provided input that was not in the list");
                 }
             }
 
                 System.out.print("Enter a 4 letter word for a guess or q to quit: " );
                 guess = scanner.nextLine();
             }
+
+            logger.log(Level.INFO,"The 'Word Guess Program' program was quit");
+
         } catch (NoSuchElementException | IllegalStateException e) {
             e.printStackTrace();
         }
