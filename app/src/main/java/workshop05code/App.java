@@ -60,7 +60,8 @@ public class App {
             String line;
             int i = 1;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                logger.log(Level.INFO, "Valid word: " + line);
+                //System.out.println(line);
                 wordleDatabaseConnection.addValidWord(i, line);
                 i++;
             }
@@ -83,7 +84,7 @@ public class App {
                  
                 if (!guess.matches("[a-z]+") || !(guess.length()== 4)) {
                     System.out.println("Your input is invalid. Please try again.\n");
-                    logger.log(Level.INFO,"The user provided invalid input");
+                    logger.log(Level.SEVERE,"The user provided invalid input: " + guess);
                 } else {
 
                 if (wordleDatabaseConnection.isValidWord(guess)) { 
@@ -91,7 +92,7 @@ public class App {
                     logger.log(Level.INFO,"The user provided valid input and a word was found");
                 }else{
                     System.out.println("Sorry. This word is NOT in the the list.\n");
-                    logger.log(Level.INFO,"The user provided input that was not in the list");
+                    logger.log(Level.WARNING,"The user provided input that was not in the list");
                 }
             }
 
@@ -103,6 +104,7 @@ public class App {
 
         } catch (NoSuchElementException | IllegalStateException e) {
             e.printStackTrace();
+            logger.log(Level.WARNING,"Please check your input values", e);
         }
 
     }
