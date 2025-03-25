@@ -77,7 +77,7 @@ public class App {
                 System.out.println("You've guessed '" + guess+"'.");
                  
                 if (!guess.matches("[a-z]+") || !(guess.length()== 4)) {
-                    System.out.println("Your word is invalid. Your word must be 4 digits and only in lowercase.\n");
+                    System.out.println("Your input is invalid. Please try again.\n");
                 } else {
 
                 if (wordleDatabaseConnection.isValidWord(guess)) { 
