@@ -76,12 +76,16 @@ public class App {
             while (!guess.equals("q")) {
                 System.out.println("You've guessed '" + guess+"'.");
                  
+                if (!guess.matches("[a-z]+") || !(guess.length()== 4)) {
+                    System.out.println("Your word is invalid. Your word must be 4 digits and only in lowercase.\n");
+                } else {
 
-                if (wordleDatabaseConnection.isValidWord(guess) && guess.matches("[a-z]+")) { 
+                if (wordleDatabaseConnection.isValidWord(guess)) { 
                     System.out.println("Success! It is in the the list.\n");
                 }else{
-                    System.out.println("Sorry. This word is NOT in the the list and/or is not 4 digits.\n");
+                    System.out.println("Sorry. This word is NOT in the the list.\n");
                 }
+            }
 
                 System.out.print("Enter a 4 letter word for a guess or q to quit: " );
                 guess = scanner.nextLine();
